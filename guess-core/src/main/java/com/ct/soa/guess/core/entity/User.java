@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 用户表
  * @author caiqianyi
-CREATE TABLE `users` (
+CREATE TABLE `t_users` (
   `id` varchar(36) CHARACTER SET utf8mb4 NOT NULL COMMENT '主键',
   `account` varchar(20) NOT NULL COMMENT '用户账号',
   `mobile` varchar(20) NOT NULL COMMENT '手机号',
@@ -28,6 +28,8 @@ CREATE TABLE `users` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '注册时间',
   `last_login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后登录时间',
   `last_buy_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后购买时间',
+  `last_update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后修改时间',
+  
   PRIMARY KEY (`id`),
   UNIQUE KEY `account` (`account`),
   UNIQUE KEY `nick_name` (`nick_name`),
@@ -74,6 +76,7 @@ public class User implements Serializable{
 	private Date createTime;//注册时间
 	private Date lastLoginTime;//最后登录时间
 	private Date lastBuyTime;//最后购买时间
+	private Date lastUpdateTime;//最后修改时间
 	private Integer level;//等级
 	private Long fee;//账户余额
 	
@@ -203,5 +206,11 @@ public class User implements Serializable{
 	}
 	public void setCountTicket(Integer countTicket) {
 		this.countTicket = countTicket;
+	}
+	public Date getLastUpdateTime() {
+		return lastUpdateTime;
+	}
+	public void setLastUpdateTime(Date lastUpdateTime) {
+		this.lastUpdateTime = lastUpdateTime;
 	}
 }

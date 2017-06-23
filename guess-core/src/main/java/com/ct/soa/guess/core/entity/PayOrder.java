@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 支付订单表
  * 
-CREATE TABLE `pay_orders` (
+CREATE TABLE `t_pay_orders` (
   `id` varchar(36) CHARACTER SET utf8mb4 NOT NULL COMMENT '主键',
   `userid` varchar(36) DEFAULT NULL COMMENT '用户ID',
   `order_no` varchar(200) DEFAULT NULL COMMENT '平台订单号',

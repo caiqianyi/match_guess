@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 竞猜订单表
  * 
-CREATE TABLE `tickets` (
+CREATE TABLE `t_tickets` (
   `id` varchar(36) CHARACTER SET utf8mb4 NOT NULL COMMENT '主键',
   `userid` varchar(36) NOT NULL COMMENT '用户ID',
   `lottery` longtext NOT NULL COMMENT '投注code',

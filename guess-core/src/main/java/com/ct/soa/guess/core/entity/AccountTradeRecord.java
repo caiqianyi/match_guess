@@ -5,11 +5,11 @@ import java.util.Date;
 /**
  * 账户交易流水表
  * 
-CREATE TABLE `account_trade_records` (
+CREATE TABLE `t_account_trade_records` (
   `id` varchar(36) CHARACTER SET utf8mb4 NOT NULL COMMENT '主键',
   `userid` varchar(36) DEFAULT NULL COMMENT '用户ID',
   `refer_id` varchar(36) DEFAULT NULL COMMENT '涉及内部表关联ID',
-  `money` bitint(20) NOT NULL DEFAULT '0' COMMENT '交易金额',
+  `money` bigint(20) NOT NULL DEFAULT '0' COMMENT '交易金额',
   `current_money` int(11) NOT NULL DEFAULT '0' COMMENT '交易时余额',
   `descr` varchar(200) DEFAULT NULL COMMENT '详情说明',
   `hostip` varchar(200) DEFAULT NULL COMMENT '交易ip',

@@ -13,7 +13,7 @@ public interface IOrderMapper {
 	
 	int savePayOrder(PayOrder order);
 	
-	int updatePayOrderStatus(@Param("userid")Integer status,@Param("userid")String orderNo);
+	int updatePayOrderStatus(@Param("userid")Integer status,@Param("payTime")Date payTime,@Param("userid")String orderNo);
 	
 	List<PayOrder> findPayOrderByUserid(@Param("userid")String userid,@Param("userid")Integer status,@Param("userid")Date start,@Param("userid")Date end);		
 	

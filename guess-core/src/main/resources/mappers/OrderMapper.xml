@@ -20,7 +20,7 @@
 	
 	<!--保存数据-->
 	<insert id="savePayOrder" parameterType="com.ct.soa.guess.core.entity.PayOrder" useGeneratedKeys="true" keyProperty="id">
-		insert into pay_orders(
+		insert into t_pay_orders(
 			id,
 			userid,
 			order_no,
@@ -52,15 +52,19 @@
 	</insert>
 	
 	<update  id="updatePayOrderStatus" parameterType="com.ct.soa.guess.core.entity.PayOrder">
-		update pay_orders
+		update t_pay_orders
 		<set> 
 			status=#{status}
+			
+			<if test="payTime!=null">
+				, pay_time=#{payTime}
+			</if>
 		</set>
 		where order_no=#{orderNo}
 	</update>
 	
 	<select id="findPayOrderByUserid" resultMap="payOrderResultMap">
-		select * from pay_orders where userid = #{userid} and status=#{status}
+		select * from t_pay_orders where userid = #{userid} and status=#{status}
 		<if test="start!=null">
 			and start &lt;= #{start}
 		</if>
@@ -70,6 +74,6 @@
 	</select>
 	
 	<select id="findPayOrderByOrderNo" resultMap="payOrderResultMap">
-		select * from pay_orders where order_no = #{orderNo}
+		select * from t_pay_orders where order_no = #{orderNo}
 	</select>
 </mapper>
