@@ -1,0 +1,8 @@
+package com.ct.soa.guess.core.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface ITicketMapper {
+
+}

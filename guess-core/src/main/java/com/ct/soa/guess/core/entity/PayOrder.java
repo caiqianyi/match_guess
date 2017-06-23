@@ -5,45 +5,37 @@ import java.util.Date;
 
 /**
  * 支付订单表
- * CREATE TABLE `pay_order` (
-  `id` varchar(50) NOT NULL DEFAULT UUID(),
-  `orderNo` varchar(200) DEFAULT NULL COMMENT '订单号',
+ * 
+CREATE TABLE `pay_orders` (
+  `id` varchar(36) CHARACTER SET utf8mb4 NOT NULL COMMENT '主键',
+  `userid` varchar(36) DEFAULT NULL COMMENT '用户ID',
+  `order_no` varchar(200) DEFAULT NULL COMMENT '平台订单号',
+  `item_id` varchar(50) DEFAULT NULL COMMENT '商品ID',
+  `buy_way` varchar(50) DEFAULT NULL COMMENT '购买方式、用途',
+  `pay_way` varchar(50) DEFAULT NULL COMMENT '支付渠道 ZFB、WX',
+  `pay_no` varchar(200) DEFAULT NULL COMMENT '第三方支付订单号',
+  `merc_no` varchar(50) DEFAULT NULL COMMENT '第三方支付商户号',
+  `refer_id` varchar(36) DEFAULT NULL COMMENT '涉及内部表关联ID',
   `money` float(10,2) DEFAULT '0.00' COMMENT '支付金额',
-  `createTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
-  `buyWay` char(10) DEFAULT 'ON' COMMENT '',
-  `userId` varchar(50) NOT NULL COMMENT '游戏显示玩家id',
-  `agentId` int(11) DEFAULT NULL COMMENT 'agentId 只有vip充卡的时候会存',
-  `playerType` char(10) DEFAULT NULL COMMENT '玩家类型 P:普通玩家 V：VIP',
-  `chargeUser` varchar(20) DEFAULT 'S' COMMENT '充卡人：如果线上买卡，默认为S，否则记录admin中的account',
-  `unitPrice` float(6,2) DEFAULT '0.00' COMMENT '房卡单价（只有线下的时候会有或者线上支付购买的时候会有）',
-  `serverCode` char(20) DEFAULT NULL COMMENT '区服',
-  `buyTime` int(11) DEFAULT NULL COMMENT '购买时间',
-  `payWay` char(10) DEFAULT NULL COMMENT '当buyWay=ONPAY时，payWay有值 (ZFB、WX)',
-  `orderStatus` char(10) DEFAULT NULL COMMENT '订单状态',
-  `activitySend` int(11) DEFAULT '0' COMMENT '活动额外赠送',
-  `payNo` varchar(100) DEFAULT NULL COMMENT '第三方支付订单号',
-  `loginNo` varchar(64) DEFAULT NULL,
-  `mercNo` varchar(64) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL COMMENT '订单状态 0 未支付 1已支付未到账 2交易成功',
+  `pay_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '到账时间',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`),
-  KEY `orderNo` (`orderNo`),
-  KEY `createTime_index` (`createTime`),
-  KEY `agentId_index` (`agentId`),
-  KEY `userId_index` (`userId`),
-  KEY `buyWay_index` (`buyWay`),
-  KEY `playerType_index` (`playerType`),
-  KEY `chargeUser_index` (`chargeUser`),
-  KEY `serverCode_index` (`serverCode`),
-  KEY `buyTime_index` (`buyTime`),
-  KEY `payWay_index` (`payWay`),
-  KEY `orderStatus_index` (`orderStatus`),
-  KEY `payNo_index` (`payNo`)
+  KEY `order_no_index` (`order_no`),
+  KEY `create_time_index` (`create_time`),
+  KEY `userid_index` (`userId`),
+  KEY `buy_way_index` (`buy_way`),
+  KEY `refer_id_index` (`refer_id`),
+  KEY `pay_time_index` (`pay_time`),
+  KEY `pay_way_index` (`pay_way`),
+  KEY `status_index` (`status`),
+  KEY `pay_no` (`pay_no`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='支付订单表';
-
- * @author user
+ * @author caiqianyi
  *
  */
 public class PayOrder {
-	
+	 
 	private String id;
 	private String userid;//用户ID
 	private String orderNo;//平台订单号

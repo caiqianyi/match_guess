@@ -5,6 +5,27 @@ import java.util.Date;
 
 /**
  * 竞猜订单表
+ * 
+CREATE TABLE `tickets` (
+  `id` varchar(36) CHARACTER SET utf8mb4 NOT NULL COMMENT '主键',
+  `userid` varchar(36) NOT NULL COMMENT '用户ID',
+  `lottery` longtext NOT NULL COMMENT '投注code',
+  `money` bigint(20) NOT NULL DEFAULT '0' COMMENT '交易金额',
+  `cat_id` varchar(50) NOT NULL COMMENT '竞猜类型',
+  `issue` varchar(200) NOT NULL COMMENT '竞猜期号',
+  `match_id` varchar(200) NOT NULL COMMENT '比赛ID',
+  `open_lottery` longtext DEFAULT NULL COMMENT '开奖号',
+  `status` int(11) NOT NULL DEFAULT 2 COMMENT '订单状态  0出票失败 1出票成功 2出票中  3已返奖 4未中奖',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '交易时间',
+  PRIMARY KEY (`id`),
+  KEY `create_time_index` (`create_time`),
+  KEY `userid_index` (`userid`),
+  KEY `status_index` (`status`),
+  KEY `match_id_index` (`match_id`),
+  KEY `issue_index` (`issue`),
+  KEY `cat_id_index` (`cat_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='竞猜订单表';
+
  * @author caiqianyi
  *
  */

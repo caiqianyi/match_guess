@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ct.soa.guess.core.dao.IAccountMapper">
+    
+	<resultMap id="userResultMap" type="com.ct.soa.guess.core.entity.User">
+		<id property="id" column="id" />
+		<result property="account" column="account"/>
+		<result property="mobile" column="mobile"/>
+		<result property="password" column="password"/>
+		<result property="nickName" column="nick_name"/>
+		<result property="source" column="source"/>
+		<result property="type" column="type"/>
+		<result property="wxAppid" column="wx_appid"/>
+		<result property="openid" column="openid"/>
+		<result property="unionid" column="unionid"/>
+		<result property="status" column="status"/>
+		<result property="lastLoginHost" column="last_login_host"/>
+		<result property="createTime" column="create_time"/>
+		<result property="lastBuyTime" column="last_buy_time"/>
+		<result property="level" column="level"/>
+		<result property="fee" column="fee"/>
+	</resultMap>
+	
+	<select id="findByAccount" resultMap="userResultMap">
+		select * from users where account=#{account} limit 1 
+	</select>
+	
+	<select id="findByMobile" resultMap="userResultMap">
+		select * from users where mobile=#{mobile} limit 1 
+	</select>
+	
+	<select id="findByUnionid" resultMap="userResultMap">
+		select * from users where unionid=#{unionid} limit 1 
+	</select>
+	
+	<select id="findByOpenid" resultMap="userResultMap">
+		select * from users where openid=#{openid} and wx_appid=#{wxAppid} limit 1 
+	</select>
+	
+	<!--查询实体数据-->
+	<select id="findById" resultMap="userResultMap">
+		select * from users where id=#{id} limit 1 
+	</select>
+	
+	<select id="login" resultMap="userResultMap">
+		select * from users where (account=#{account} or mobile=#{mobile}) and password=#{password} limit 1 
+	</select>
+	
+	<!--保存数据-->
+	<insert id="saveUser" parameterType="com.ct.soa.guess.core.entity.User" useGeneratedKeys="true" keyProperty="id">
+		insert into users(
+			id,
+			account,
+			mobile,
+			password,
+			nick_name,
+			source,
+			type,
+			openid,
+			unionid,
+			status,
+			last_login_host,
+			create_time,
+			last_buy_time,
+			level,
+			fee
+		) values(
+			UUID(),
+			#{account},
+			#{mobile},
+			#{password},
+			#{nickName},
+			#{source},
+			#{type},
+			#{openid},
+			#{unionid},
+			#{status},
+			#{lastLoginHost},
+			NOW(),
+			null,
+			0,
+			0
+		)
+	</insert>
+	
+	<!--更新数据-->
+	<update  id="updateUserInfo" parameterType="com.ct.soa.guess.core.entity.User">
+		update users
+		<set> 
+		    <if test="mobile!=null">
+				mobile=#{mobile},
+			</if>
+			<if test="password!=null">
+				password=#{password},
+			</if>
+			<if test="nickName!=null">
+				nick_name=#{nickName},
+			</if>
+			<if test="source!=null">
+				source=#{source},
+			</if>
+			<if test="type!=null">
+				type=#{type},
+			</if>
+			<if test="wxAppid!=null">
+				wx_appid=#{wxAppid},
+			</if>
+			<if test="openid!=null">
+				openid=#{openid},
+			</if>
+			<if test="unionid!=null">
+				unionid=#{unionid},
+			</if>
+			<if test="status!=null">
+				status=#{status},
+			</if>
+			<if test="lastLoginHost!=null">
+				last_login_host=#{lastLoginHost},
+			</if>
+			<if test="createime!=null">
+				create_time=#{createime},
+			</if>
+			<if test="lastBuyTime!=null">
+				last_buy_time=#{lastBuyTime},
+			</if>
+			<if test="level!=null">
+				level=#{level},
+			</if>
+			<if test="fee!=null">
+				fee=#{fee},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+	
+	<resultMap id="tradeRecordResultMap" type="com.ct.soa.guess.core.entity.AccountTradeRecord">
+		<id property="id" column="id" />
+		<result property="userid" column="userid"/>
+		<result property="referId" column="refer_id"/>
+		<result property="money" column="money"/>
+		<result property="currentMoney" column="current_money"/>
+		<result property="descr" column="descr"/>
+		<result property="hostip" column="hostip"/>
+		<result property="status" column="status"/>
+		<result property="tradeType" column="trade_type"/>
+		<result property="createTime" column="create_time"/>
+	</resultMap>
+	
+	<select id="findAllTradeRecordByUserid" resultMap="tradeRecordResultMap">
+		select * from account_trade_records where userid = #{userid} 
+	</select>
+	
+	<select id="findTradeRecordByUserid" resultMap="tradeRecordResultMap">
+		select * from account_trade_records where userid = #{userid} and create_time between #{start} and #{end} 
+	</select>
+	
+	<select id="findTradeRecordByReferId" resultMap="tradeRecordResultMap">
+		select * from account_trade_records where refer_id = #{referId} and trade_type = #{tradeType} 
+	</select>
+	
+	<insert id="saveTradeRecord" parameterType="com.ct.soa.guess.core.entity.AccountTradeRecord" useGeneratedKeys="true" keyProperty="id">
+		insert into account_trade_records(
+			id,
+			userid,
+			refer_id,
+			money,
+			current_money,
+			descr,
+			hostip,
+			status,
+			trade_type,
+			create_time
+		) values(
+			UUID(),
+			#{userid},
+			#{referId},
+			#{money},
+			#{currentMoney},
+			#{descr},
+			#{hostip},
+			#{status},
+			#{tradeType},
+			NOW()
+		)
+	</insert>
+</mapper>

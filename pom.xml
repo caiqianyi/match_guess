@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
   	<groupId>com.ct</groupId>
-  	<artifactId>soa-app-base</artifactId> 
+  	<artifactId>soa-app-base</artifactId>
   	<version>1.0.0-RELEASE</version>
   </parent>
  
@@ -28,14 +28,4 @@
   <build>
   	<finalName>guess-parent</finalName>
   </build>
-  
-  <dependencyManagement>
-  	<dependencies>
-  		<dependency>
-  			<groupId>com.ct</groupId>
-  			<artifactId>guess-core</artifactId>
-  			<version>1.0.0-RELEASE</version>
-  		</dependency>
-  	</dependencies>
-  </dependencyManagement>
 </project>
