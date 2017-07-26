@@ -5,10 +5,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.DispatcherServlet;
 
 import com.ct.soa.web.framework.datasource.DynamicDataSourceRegister;
 
@@ -22,6 +25,22 @@ import com.ct.soa.web.framework.datasource.DynamicDataSourceRegister;
 @SpringBootApplication
 @EnableRabbit
 public class App{
+	
+	 /**
+     * 修改DispatcherServlet默认配置
+     *
+     * @param dispatcherServlet
+     * @return
+     * @author cqy
+     * @create  2017年7月26日
+     */
+    @Bean
+    public ServletRegistrationBean dispatcherRegistration(DispatcherServlet dispatcherServlet) {
+        ServletRegistrationBean registration = new ServletRegistrationBean(dispatcherServlet);
+        registration.getUrlMappings().clear();
+        registration.addUrlMappings("*.json");
+        return registration;
+    }
 	
 	 public static void main(String[] args) {
 		 
