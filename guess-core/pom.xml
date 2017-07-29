@@ -28,9 +28,38 @@
   </dependencies> -->
   <dependencies>
   	<dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-config-client</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+  	<dependency>
   		<groupId>com.ct</groupId>
   		<artifactId>config-load</artifactId>
   		<version>2.0.0-RELEASE</version>
   	</dependency>
   </dependencies>
+  
+  <repositories>
+       <repository>
+           <id>spring-milestones</id>
+           <name>Spring Milestones</name>
+           <url>http://repo.spring.io/milestone</url>
+           <snapshots>
+               <enabled>false</enabled>
+           </snapshots>
+       </repository>
+   </repositories>
+   <pluginRepositories>
+       <pluginRepository>
+           <id>spring-milestones</id>
+           <name>Spring Milestones</name>
+           <url>http://repo.spring.io/milestone</url>
+           <snapshots>
+               <enabled>false</enabled>
+           </snapshots>
+       </pluginRepository>
+   </pluginRepositories>
 </project>

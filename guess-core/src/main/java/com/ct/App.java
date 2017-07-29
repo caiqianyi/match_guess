@@ -21,7 +21,6 @@ import com.ct.soa.web.framework.datasource.DynamicDataSourceRegister;
 @Configuration  
 @EnableAutoConfiguration
 @ComponentScan  
-@Import({DynamicDataSourceRegister.class}) //多数据源管理
 @SpringBootApplication
 @EnableRabbit
 public class App{
