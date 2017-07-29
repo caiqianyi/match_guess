@@ -1,5 +1,6 @@
 package com.ct.soa.guess.core.controller;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -70,12 +71,12 @@ public class LpLMatchController {
 				
 			});
 			
-			long start = Long.parseLong((String) guess.get(0).get("guess_end_time")) - 2*60*60*1000,end = Long.parseLong((String) guess.get(guess.size()-1).get("guess_end_time"));
-			logger.info("first.guess=[match_id={},time={}]",guess.get(0).get("match_id"),start);
-			logger.info("end.guess=[match_id={},time={}]",guess.get(guess.size()-1).get("match_id"),end);
+			List<String> matchIds = new ArrayList<String>();
+			for(Map item : guess){
+				matchIds.add((String)item.get("match_id"));
+			}
 			
-			
-			List<Map> matchs = mongoTemplate.find(new Query().addCriteria(Criteria.where("match_date").lte(end).gte(start).and("league").is(league)), Map.class, lol_matchs_cn);
+			List<Map> matchs = mongoTemplate.find(new Query().addCriteria(Criteria.where("match_id").in(matchIds).and("league").is(league)), Map.class, lol_matchs_cn);
 			Collections.sort(matchs,new Comparator<Map>(){
 				@Override
 				public int compare(Map o1, Map o2) {
@@ -103,6 +104,7 @@ public class LpLMatchController {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(new Date(1501231980000l));
+		System.out.println(new Date(1501332180000l));
+		System.out.println(new Date(1501322400000l));
 	}
 }
