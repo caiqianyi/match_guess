@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -21,9 +22,10 @@ import com.ct.soa.web.framework.datasource.DynamicDataSourceRegister;
 @Configuration  
 @EnableAutoConfiguration
 @ComponentScan  
+@Import({DynamicDataSourceRegister.class}) //多数据源管理
 @SpringBootApplication
 @EnableRabbit
-public class App{
+public class App extends SpringBootServletInitializer{
 	
 	 /**
      * 修改DispatcherServlet默认配置
@@ -42,11 +44,11 @@ public class App{
     }
 	
 	 public static void main(String[] args) {
-		 
 		 System.out.println("以jar包方式启动...");
          SpringApplication.run(App.class, args);
      }
 	 
+	 @Override
 	 protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         System.out.println("以war包方式启动...");
         return builder.sources(this.getClass());
