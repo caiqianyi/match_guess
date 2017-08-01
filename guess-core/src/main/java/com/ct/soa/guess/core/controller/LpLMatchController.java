@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ct.commons.utils.DateUtil;
+import com.ct.soa.core.redis.IRedisHash;
+import com.ct.soa.core.redis.RedisSpace;
 
 @RestController
 @RequestMapping("/lol/")
@@ -32,6 +34,8 @@ public class LpLMatchController {
 	
 	@Resource
 	private MongoTemplate mongoTemplate;
+	@Resource
+	private IRedisHash redisHash;
 	
 	private String lpl_match_guess_list = "lpl_match_guess_list";
 	
@@ -98,6 +102,7 @@ public class LpLMatchController {
 		for(Map item : guess){
 			m.put((String)item.get("match_id"), item);
 		}
+		redisHash.hGet(RedisSpace.GUESS, "aaa", "1");
 		result.put("guess", m);
 		return result;
 		//return mongoTemplate.findAll(Map.class, lpl_match_guess_list);
