@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +26,7 @@ import com.ct.soa.web.framework.datasource.DynamicDataSourceRegister;
 @Import({DynamicDataSourceRegister.class}) //多数据源管理
 @SpringBootApplication
 @EnableRabbit
+@EnableDiscoveryClient
 public class App extends SpringBootServletInitializer{
 	
 	 /**

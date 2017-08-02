@@ -9,34 +9,41 @@
   
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>guess-core</artifactId>
+  <artifactId>guess-lol-service</artifactId>
   <version>1.0.0-RELEASE</version>
   <packaging>jar</packaging>
 
-  <name>guess-core</name>
+  <name>guess-lol-service</name>
   <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
-  
+
   <dependencies>
+  	
   	<dependency>
         <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-ribbon</artifactId>
+        <artifactId>spring-cloud-config-client</artifactId>
     </dependency>
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-  	<dependency>
+    <dependency>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka</artifactId>
 	</dependency>
-	<dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-feign</artifactId>
-    </dependency>
+  	<dependency>
+  		<groupId>com.ct</groupId>
+  		<artifactId>config-load</artifactId>
+  		<version>2.0.0-RELEASE</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>com.ct</groupId>
+  		<artifactId>guess-model</artifactId>
+  		<version>1.0.0-RELEASE</version>
+  	</dependency>
   </dependencies>
   
   <repositories>
