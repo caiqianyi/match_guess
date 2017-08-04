@@ -10,11 +10,11 @@
   
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>guess-core</artifactId>
+  <artifactId>guess-api</artifactId>
   <version>1.0.0-RELEASE</version>
   <packaging>jar</packaging>
 
-  <name>guess-core</name>
+  <name>guess-api</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -23,14 +23,6 @@
   
   <dependencies>
   	<dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-ribbon</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-  	<dependency>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka</artifactId>
 	</dependency>
@@ -38,30 +30,8 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-feign</artifactId>
     </dependency>
-    <dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-test</artifactId>
-		<scope>test</scope>
-	</dependency>
-	<dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-log4j2</artifactId>
-    </dependency>
-    <!--使用hystrix-->
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-hystrix</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
-    </dependency>
-    <dependency>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>guess-api</artifactId>
-		<version>1.0.0-RELEASE</version>
-	</dependency>
   </dependencies>
+  
   <dependencyManagement>
 	<dependencies>
 		<dependency>
@@ -75,7 +45,7 @@
   </dependencyManagement>
   
   <build>
-	<plugins>
+	<plugins> 
 		<plugin>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-maven-plugin</artifactId>
