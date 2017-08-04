@@ -12,7 +12,7 @@
   <artifactId>service-eureka-server</artifactId>
   <packaging>jar</packaging>
   <version>1.0.0-RELEASE</version>
-  <name>配置中心</name>
+  <name>eureka服务注册与发现</name>
 
   <dependencies>
      <dependency>
@@ -21,6 +21,51 @@
      </dependency>
   </dependencies>
   <build>
-    <finalName>caipiao-config-server</finalName>
+    <finalName>caipiao-eureka-server</finalName>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        
+        <!-- 编译插件 -->  
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <configuration>  
+                <source>1.7</source>  
+                <target>1.7</target>  
+            </configuration>  
+        </plugin>  
+        <plugin>  
+            <!-- 发布插件 -->  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-deploy-plugin</artifactId>
+        </plugin>
+        
+        <!-- 打war包插件 -->
+        <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-war-plugin</artifactId>
+		    <configuration>
+                <failOnMissingWebXml>false</failOnMissingWebXml><!-- maven打包的时候告诉maven不需要web.xml,否刚会报找不到web.xml错误  -->
+            </configuration>
+	    </plugin>
+          
+        <plugin>  
+            <artifactId>maven-source-plugin</artifactId>  
+            <configuration>  
+                <attach>true</attach>  
+            </configuration>  
+            <executions>  
+                <execution>  
+                    <phase>compile</phase>  
+                    <goals>  
+                        <goal>jar</goal>  
+                    </goals>  
+                </execution>  
+            </executions>  
+        </plugin>  
+    </plugins>
   </build>
 </project>

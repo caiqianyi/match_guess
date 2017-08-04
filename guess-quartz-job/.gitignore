@@ -1,0 +1,7 @@
+/log4j/
+/target/
+/logs/
+/crawl/
+/.settings/
+.classpath
+.project

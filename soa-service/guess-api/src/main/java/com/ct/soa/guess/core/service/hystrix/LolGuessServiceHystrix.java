@@ -4,12 +4,16 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.ct.soa.guess.core.service.LoLGuessService;
 
 @Component
 public class LolGuessServiceHystrix implements LoLGuessService {
+	
+	private Logger logger = LoggerFactory.getLogger(LolGuessServiceHystrix.class);
 
 	@Override
 	public List<Map> matchs(String league) {
@@ -23,4 +27,17 @@ public class LolGuessServiceHystrix implements LoLGuessService {
 		return Collections.emptyMap();
 	}
 
+	@Override
+	public boolean pullMatchGuess(String body) {
+		
+		logger.debug("body={}",body);
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	@Override
+	public boolean pullMatchInfo(String body, Integer p8) {
+		logger.debug("body={},p8={}",body,p8);
+		return false;
+	}
 }
