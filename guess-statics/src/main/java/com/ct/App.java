@@ -12,13 +12,7 @@ public class App{
 	
 	 public static void main(String[] args) {
 		 
-		 System.out.println("以jar包方式启动...");
          SpringApplication.run(App.class, args);
-     }
-	 
-	 protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        System.out.println("以war包方式启动...");
-        return builder.sources(this.getClass());
      }
 }
  

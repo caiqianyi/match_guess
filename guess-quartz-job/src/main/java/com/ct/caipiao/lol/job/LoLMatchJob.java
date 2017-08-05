@@ -8,7 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
+import org.apache.commons.lang.time.DateUtils;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
@@ -108,7 +108,7 @@ public class LoLMatchJob extends AbstractLoLMatchJob{
 	}
 	
 	public static void main(String[] args) throws ParseException {
-		long start = DateUtils.parseDate("2017-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss").getTime(),end = DateUtils.parseDate("2018-01-01 00:00:00", "yyyy-MM-dd HH:mm:ss").getTime();
+		long start = DateUtils.parseDate("2017-01-01 00:00:00", new String[]{"yyyy-MM-dd HH:mm:ss"}).getTime(),end = DateUtils.parseDate("2018-01-01 00:00:00", new String[]{"yyyy-MM-dd HH:mm:ss"}).getTime();
 		String json = "{\"start\":"+start+",\"end\":"+end+",\"p8\":51}";
 		System.out.println(json);
 		//new LoLMatchJob().run(json);

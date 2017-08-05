@@ -3,7 +3,7 @@
   
   <parent>
   	<groupId>com.ct</groupId>
-  	<artifactId>guess-parent</artifactId>
+  	<artifactId>caipiao-app-base</artifactId>
   	<version>1.0.0-RELEASE</version>
   </parent>
   
@@ -21,4 +21,10 @@
   </properties>
 
 
+  <dependencies>
+  	<dependency>
+  		<groupId>com.ct</groupId>
+  		<artifactId>common-utils</artifactId>
+  	</dependency>
+  </dependencies>
 </project>

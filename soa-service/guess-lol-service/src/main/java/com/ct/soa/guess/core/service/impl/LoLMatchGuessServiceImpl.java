@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import org.apache.commons.lang.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -50,7 +51,11 @@ public class LoLMatchGuessServiceImpl implements ILoLMatchGuessService {
 		long end = c.getTimeInMillis();
 		logger.info("start={},end={},league={}",DateUtil.formatDatetime(new Date(start), "yyyy-MM-dd HH:mm:ss"),DateUtil.formatDatetime(new Date(end), "yyyy-MM-dd HH:mm:ss"),league);
 		Query query = new Query().addCriteria(Criteria.where("match_date").lte(end).gte(start).and("league").is(league));
-		return mongoTemplate.find(query, Map.class, MongoCollections.LOL_MATCHS_NAME);
+		List<Map> list = mongoTemplate.find(query, Map.class, MongoCollections.LOL_MATCHS_NAME);
+		for(Map map :list){
+			map.remove("_id");
+		}
+		return list;
 	}
 
 	@Override
@@ -61,6 +66,10 @@ public class LoLMatchGuessServiceImpl implements ILoLMatchGuessService {
 		Query query = new Query().addCriteria(Criteria.where("bet_state").is("2").and("play_type").is(play_type));
 		List<Map> guess = mongoTemplate.find(query, Map.class, MongoCollections.LPL_MATCH_GUESS_NAME);
 		if(!guess.isEmpty()){
+			
+			for(Map map :guess){
+				map.remove("_id");
+			}
 			
 			Collections.sort(guess,new Comparator<Map>(){
 				@Override
@@ -90,6 +99,7 @@ public class LoLMatchGuessServiceImpl implements ILoLMatchGuessService {
 			Map<String,Map> m = new TreeMap<String,Map>();
 			for(Map item : matchs){
 				m.put((String)item.get("match_id"), item);
+				item.remove("_id");
 			}
 			result.put("matchs", m);
 		}

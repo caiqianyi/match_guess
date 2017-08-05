@@ -21,6 +21,10 @@
   </properties>
 
   <dependencies>
+  	<dependency>  
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-data-mongodb</artifactId>
+	</dependency>
   	<dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-config-client</artifactId>
@@ -29,40 +33,41 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-  	<dependency>
+    <dependency>
 		<groupId>org.springframework.cloud</groupId>
 		<artifactId>spring-cloud-starter-eureka</artifactId>
 	</dependency>
-	<dependency>
+  	<dependency>
   		<groupId>com.ct</groupId>
   		<artifactId>config-load</artifactId>
-  		<version>2.0.0-RELEASE</version>
   	</dependency>
   	<dependency>
   		<groupId>com.ct</groupId>
   		<artifactId>guess-model</artifactId>
-  		<version>1.0.0-RELEASE</version>
   	</dependency>
+  	<dependency>
+		<groupId>com.ct</groupId>
+		<artifactId>soa-rediscache</artifactId>
+   	</dependency>
+   	<dependency>
+		<groupId>com.ct</groupId>
+		<artifactId>common-utils</artifactId>
+   	</dependency>
+   	<dependency>
+		<groupId>com.ct</groupId>
+		<artifactId>soa-amqp</artifactId>
+   	</dependency>
+   	<dependency>
+		<groupId>com.ct</groupId>
+		<artifactId>soa-exception</artifactId>
+   	</dependency>
+   	<dependency>
+		<groupId>com.ct</groupId>
+		<artifactId>soa-web-framework</artifactId>
+   	</dependency>
   </dependencies>
+  <build>
+  	<finalName>guess-pay-service</finalName>
+  </build>
   
-  <repositories>
-       <repository>
-           <id>spring-milestones</id>
-           <name>Spring Milestones</name>
-           <url>http://repo.spring.io/milestone</url>
-           <snapshots>
-               <enabled>false</enabled>
-           </snapshots>
-       </repository>
-   </repositories>
-   <pluginRepositories>
-       <pluginRepository>
-           <id>spring-milestones</id>
-           <name>Spring Milestones</name>
-           <url>http://repo.spring.io/milestone</url>
-           <snapshots>
-               <enabled>false</enabled>
-           </snapshots>
-       </pluginRepository>
-   </pluginRepositories>
 </project>
