@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.ct.soa.guess.core.service.hystrix.LolGuessServiceHystrix;
 
 @FeignClient(value="guess-lol-service",fallback=LolGuessServiceHystrix.class)
-public interface LoLGuessService {
+public interface ILoLGuessService {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/lol/matchs/{league}")
 	List<Map> matchs(@PathVariable(value="league") String league);

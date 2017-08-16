@@ -29,6 +29,11 @@
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-feign</artifactId>
     </dependency>
+	<dependency>
+		<groupId>com.ct</groupId>
+		<artifactId>guess-model</artifactId>
+		<version>1.0.0-RELEASE</version>
+	</dependency>
   </dependencies>
   
   <build>

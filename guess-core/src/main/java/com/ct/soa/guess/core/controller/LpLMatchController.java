@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ct.soa.guess.core.service.LoLGuessService;
+import com.ct.soa.guess.core.service.ILoLGuessService;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
@@ -24,7 +24,7 @@ public class LpLMatchController {
 	private Logger logger = LoggerFactory.getLogger(LpLMatchController.class);
 	
 	@Resource
-	private LoLGuessService lolGuessService;
+	private ILoLGuessService lolGuessService;
 	
 	
 	@RequestMapping(value="/matchs/{league}", method=RequestMethod.GET)

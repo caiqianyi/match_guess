@@ -4,25 +4,32 @@
   	<groupId>com.ct</groupId>
   	<artifactId>caipiao-app-base</artifactId>
   	<version>1.0.0-RELEASE</version>
+  	<relativePath></relativePath>
   </parent>
  
   <modelVersion>4.0.0</modelVersion>
+  <groupId>com.ct</groupId>
   <artifactId>guess-parent</artifactId>
   <version>1.0.0-RELEASE</version>
   <packaging>pom</packaging>
   
+  <name>guess-parent</name>
+  
   <modules>
+  	<module>soa-service/guess-model</module>
+  	<module>soa-service/guess-api</module>
+  	
+  	
   	<module>guess-core</module>
     <module>guess-statics</module>
     
     <module>guess-quartz-job</module>
     
     <module>soa-service/guess-account-service</module>
-    <module>soa-service/guess-api</module>
+    
     <module>soa-service/guess-lol-service</module>
-    <module>soa-service/guess-model</module>
+    
     <module>soa-service/guess-pay-service</module>
-    <module>soa-service/service-eureka-server</module>
     <module>guess-amqp-consumer/lol-guess-consumer</module>
   </modules>
   

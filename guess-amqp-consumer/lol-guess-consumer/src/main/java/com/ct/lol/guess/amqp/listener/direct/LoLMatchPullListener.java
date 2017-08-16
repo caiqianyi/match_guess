@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.ct.soa.guess.core.constants.AmqpDirectQueue;
-import com.ct.soa.guess.core.service.LoLGuessService;
+import com.ct.soa.guess.core.service.ILoLGuessService;
 
 
 /**
@@ -31,7 +31,7 @@ public class LoLMatchPullListener {
 	private Logger logger = LoggerFactory.getLogger(LoLMatchPullListener.class);
 	
 	@Resource
-	private LoLGuessService lolGuessService;
+	private ILoLGuessService lolGuessService;
 
 	@Bean
     public Queue queueLoLMatchPull() {

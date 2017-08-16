@@ -8,10 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.ct.soa.guess.core.service.LoLGuessService;
+import com.ct.soa.guess.core.service.ILoLGuessService;
 
 @Component
-public class LolGuessServiceHystrix implements LoLGuessService {
+public class LolGuessServiceHystrix implements ILoLGuessService {
 	
 	private Logger logger = LoggerFactory.getLogger(LolGuessServiceHystrix.class);
 

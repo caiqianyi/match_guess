@@ -13,9 +13,13 @@ public interface ITicketMapper {
 	
 	int saveTicket(Ticket ticket);
 	
-	public List<Ticket> findTicketByUserid(@Param("userid")String userid,
+	int updateTicket(Ticket ticket);
+	
+	List<Ticket> findTicketByUserid(@Param("userid")String userid,
 			@Param("status")Integer status,@Param("catId")String catId,
 			@Param("start")Date start,@Param("end")Date end);
 	
-	public Ticket findTicketById(@Param("userid")String userid,@Param("id")String id);
+	Ticket findTicketById(@Param("userid")String userid,@Param("id")String id);
+	
+	List<Ticket> findTicketByOpening(@Param("catId")String catId);
 }

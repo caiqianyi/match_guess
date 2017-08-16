@@ -17,6 +17,8 @@ CREATE TABLE `t_tickets` (
   `match_id` varchar(200) NOT NULL COMMENT '比赛ID',
   `open_lottery` longtext DEFAULT NULL COMMENT '开奖号',
   `status` int(11) NOT NULL DEFAULT 2 COMMENT '订单状态  0出票失败 1出票成功 2出票中  3已返奖 4未中奖',
+  `bonus` bigint(20) NOT NULL DEFAULT '0' COMMENT '奖金',
+  `open_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '开奖时间',
   `last_open_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '最后开奖时间',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '交易时间',
   PRIMARY KEY (`id`),
@@ -44,6 +46,8 @@ public class Ticket implements Serializable{
 	private String matchId;//比赛ID
 	private String openLottery;//开奖号
 	private Integer status;//状态
+	private Long bonus;//奖金
+	private Date openTime;//开奖时间
 	private Date lastOpenTime;//最后开奖时间
 	private Date createTime;//购买时间
 	
@@ -112,5 +116,17 @@ public class Ticket implements Serializable{
 	}
 	public void setLastOpenTime(Date lastOpenTime) {
 		this.lastOpenTime = lastOpenTime;
+	}
+	public Long getBonus() {
+		return bonus;
+	}
+	public void setBonus(Long bonus) {
+		this.bonus = bonus;
+	}
+	public Date getOpenTime() {
+		return openTime;
+	}
+	public void setOpenTime(Date openTime) {
+		this.openTime = openTime;
 	}
 }

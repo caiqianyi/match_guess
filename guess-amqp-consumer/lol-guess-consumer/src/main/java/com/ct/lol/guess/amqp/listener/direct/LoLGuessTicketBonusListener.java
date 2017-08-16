@@ -13,8 +13,10 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.ct.soa.guess.core.constants.AmqpDirectQueue;
-import com.ct.soa.guess.core.service.ILoLGuessService;
+import com.ct.soa.guess.core.service.ITicketService;
 
 
 /**
@@ -23,31 +25,26 @@ import com.ct.soa.guess.core.service.ILoLGuessService;
  *
  */
 @Component
-@RabbitListener(queues = AmqpDirectQueue.LOL_GUESS_PULL)
-public class LoLGuessPullListener {
+@RabbitListener(queues = AmqpDirectQueue.LOL_GUESS_TICKET_BONUS)
+public class LoLGuessTicketBonusListener {
 	
-	private Logger logger = LoggerFactory.getLogger(LoLGuessPullListener.class);
+	private Logger logger = LoggerFactory.getLogger(LoLGuessTicketBonusListener.class);
 	
 	@Resource
-	private ILoLGuessService lolGuessService;
+	private ITicketService ticketService;
 
 	@Bean
-    public Queue queueLoLGuessPull() {
-        return new Queue(AmqpDirectQueue.LOL_GUESS_PULL);
+    public Queue queueLoLGuessTicketBonus() {
+        return new Queue(AmqpDirectQueue.LOL_GUESS_TICKET_BONUS);
     }
 
     @Bean
-    Binding bindingDirectExchangeLoLGuessPull(Queue queueLoLGuessPull, DirectExchange directExchange) {
-        return BindingBuilder.bind(queueLoLGuessPull).to(directExchange).with(AmqpDirectQueue.LOL_GUESS_PULL);
+    Binding bindingDirectExchangeLoLGuessTicketBonus(Queue queueLoLGuessTicketBonus, DirectExchange directExchange) {
+        return BindingBuilder.bind(queueLoLGuessTicketBonus).to(directExchange).with(AmqpDirectQueue.LOL_GUESS_TICKET_BONUS);
     }
 	
 	@RabbitHandler
     public void receive(String body) {
-		try{
-			lolGuessService.pullMatchGuess(body);
-		}catch(Exception e){
-			logger.info("e={}",e);
-		}
-		
+		ticketService.lolGuessSyncBonusForAll();
     }
 }

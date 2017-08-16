@@ -41,7 +41,18 @@
 		)
 	</insert>
 	
-	<select id="findTicketByUserid" resultMap="tradeRecordResultMap">
+	<update  id="updateTicket" parameterType="com.ct.soa.guess.core.entity.Ticket">
+		update t_tickets
+		<set> 
+			status=#{status},
+			open_lottery=#{openLottery},
+			bonus=#{bonus},
+			open_time#{openTime}
+		</set>
+		where id=#{id}
+	</update>
+	
+	<select id="findTicketByUserid" resultMap="ticketResultMap">
 		select * from t_tickets where userid = #{userid} 
 		<if test="status!=null">
 			and status = #{status}
@@ -57,7 +68,11 @@
 		</if>
 	</select>
 
-	<select id="findTicketById" resultMap="tradeRecordResultMap">
+	<select id="findTicketById" resultMap="ticketResultMap">
 		select * from t_tickets where id = #{id} and userid = #{userid}
+	</select>
+	
+	<select id="findTicketByOpening" resultMap="ticketResultMap">
+		select * from t_tickets where cat_id = #{catId} and status = 1 and last_open_time &gt; NOW()
 	</select>
 </mapper>

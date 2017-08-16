@@ -55,6 +55,23 @@
          <groupId>org.springframework.cloud</groupId>
          <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
      </dependency>
+     <dependency>
+	  <groupId>org.springframework.session</groupId>
+	  <artifactId>spring-session-data-redis</artifactId>
+	 </dependency>  
+	
+	 <dependency>
+	  <groupId>org.springframework.boot</groupId>
+	  <artifactId>spring-boot-starter-redis</artifactId>
+	 </dependency>
+	 <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-security</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-oauth2</artifactId>
+    </dependency>
     <dependency>
 		<groupId>com.ct</groupId>
 		<artifactId>guess-api</artifactId>
